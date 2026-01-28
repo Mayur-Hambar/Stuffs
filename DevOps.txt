@@ -149,6 +149,22 @@ FOR MAVEN-JAVA PROGRAM USE FOLLOWING COMMAND (CREATING JOBS):-
 kubectl create job <job_name> --image=<docker_username>/<image_name>:1.0
 kubectl get jobs
 
+docker swarm init
+
+docker-compose.yml
+version: "3.8"
+services:
+  react-app:
+    image: username/my-react-app:latest
+    ports:
+      - "80:80"
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+      placement:
+        constraints: [node.role == worker]
+
  
 
 REACTJS:
